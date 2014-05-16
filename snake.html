@@ -7,14 +7,21 @@
 
 <body>
 <center>
-</br>
-<h1>HTML 5 Canvas</h1>
-</br>
+
 
 <canvas id="myCanvas" width="500" height="500" style="border:4px solid #000000;"></canvas>
+<br/>
+<button style="width:50px; height:50px;" onclick="Up();">Up</button>
+<br/>
+<button style="width:50px; height:50px;" onclick="Left();">Left</button>
+<button style="width:50px; height:50px;" onclick="Right();">Right</button>
+<br/>
+<button style="width:50px; height:50px;" onclick="Down();">Down</button>
 </center>
 
 <script>
+
+
 var canvas = document.getElementById("myCanvas");	
 var context = canvas.getContext("2d");			
 
@@ -22,45 +29,40 @@ var canvasWidth = 500;
 var canvasHeight = 500;
 var l = 10;
 var snakeArray =[];
-var direction = 'right';
-var count = 0;
-var score = false;
-
+var direction = "Right";
 CreateSnake();
 
 setInterval(function(){Move()}, 300);
 
 
 function Move(){
-count = count +1;
+
 
 var snakeObject = new Object();
 
-if(count<10){
-snakeObject.x = snakeArray[0].x+l;
-snakeObject.y = snakeArray[0].y;
-}
-else if (count<20){
-snakeObject.x = snakeArray[0].x;
-snakeObject.y = snakeArray[0].y+l;
-}
-else if (count<30){
-snakeObject.x = snakeArray[0].x-l;
-snakeObject.y = snakeArray[0].y;
-}
-else{
-snakeObject.x = snakeArray[0].x;
-snakeObject.y = snakeArray[0].y-l;
-}
-console.log(snakeArray);
-snakeArray.unshift(snakeObject);
+	if(direction=="Right"){
+		snakeObject.x = snakeArray[0].x+l;
+		snakeObject.y = snakeArray[0].y;
+	}
+	else if (direction=="Down"){
+		snakeObject.x = snakeArray[0].x;
+		snakeObject.y = snakeArray[0].y+l;
+	}
+	else if (direction=="Left"){
+		snakeObject.x = snakeArray[0].x-l;
+		snakeObject.y = snakeArray[0].y;
+	}
+	else if (direction=="Up"){
+		snakeObject.x = snakeArray[0].x;
+		snakeObject.y = snakeArray[0].y-l;
+	}
+	snakeArray.unshift(snakeObject);
 
-if(!score){
-console.log(snakeArray);
-context.fillStyle = "#FFffff";
-context.fillRect(snakeArray[snakeArray.length-1].x,snakeArray[snakeArray.length-1].y,l,l);
-snakeArray.pop();
-}
+
+		console.log(snakeArray);
+		context.fillStyle = "#FFffff";
+		context.fillRect(snakeArray[snakeArray.length-1].x,snakeArray[snakeArray.length-1].y,l,l);
+		snakeArray.pop();
 
 
 context.fillStyle = "#000000";
@@ -70,37 +72,59 @@ context.fillRect(snakeArray[0].x,snakeArray[0].y,l,l);
 
 function CreateSnake(){
 
-var snakeObject0 = new Object();
-snakeObject0.x = 130;
-snakeObject0.y = 100;
-snakeArray.push(snakeObject0);
+	var snakeObject0 = new Object();
+	snakeObject0.x = 130;
+	snakeObject0.y = 100;
+	snakeArray.push(snakeObject0);
 
-var snakeObject1 = new Object();
-snakeObject1.x = 120;
-snakeObject1.y = 100;
+	var snakeObject1 = new Object();
+	snakeObject1.x = 120;
+	snakeObject1.y = 100;
 
-snakeArray.push(snakeObject1);
+	snakeArray.push(snakeObject1);
 
-var snakeObject2 = new Object();
-snakeObject2.x = 110;
-snakeObject2.y = 100;
-snakeArray.push(snakeObject2);
+	var snakeObject2 = new Object();
+	snakeObject2.x = 110;
+	snakeObject2.y = 100;
+	snakeArray.push(snakeObject2);
 
 
-var snakeObject3 = new Object();
-snakeObject3.x = 100;
-snakeObject3.y = 100;
+	var snakeObject3 = new Object();
+	snakeObject3.x = 100;
+	snakeObject3.y = 100;
 
-snakeArray.push(snakeObject3);
+	snakeArray.push(snakeObject3);
 
-for(var i=0;i<snakeArray.length;i++){
-context.fillRect(snakeArray[i].x,snakeArray[i].y,l,l);
+	for(var i=0;i<snakeArray.length;i++){
+	context.fillRect(snakeArray[i].x,snakeArray[i].y,l,l);
+	}
 }
 
 
 
+function Up(){
+	if(direction!="Down"){
+		direction="Up"
+	}	
 }
 
+function Left(){
+	if(direction!="Right"){
+		direction="Left"
+	}
+}
+
+function Right(){
+	if(direction!="Left"){
+		direction="Right"
+	}
+}
+
+function Down(){
+	if(direction!="Up"){
+		direction="Down"
+	}
+}
 </script>
 
 </body>
