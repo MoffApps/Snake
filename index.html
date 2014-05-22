@@ -8,18 +8,17 @@
 <body>
 
 
-
-<canvas  id="myCanvas" width="350" height="350" style="border:4px solid #000000;margin-top:5px;"></canvas>
-<br/>
-
-<span id="scoreBoard"></span>
 <center>
-<button style="width:75px; height:75px;" onclick="Up();">Up</button>
+<canvas  id="myCanvas" width="330" height="350" style="border:4px solid #000000;margin-top:5px;"></canvas>
+
+
 <br/>
-<button style="width:75px; height:75px;" onclick="Left();">Left</button>
-<button style="width:75px; height:75px;" onclick="Right();">Right</button>
+<button style="width:70px; height:70px;" onclick="Up();">Up</button>
 <br/>
-<button style="width:75px; height:75px;" onclick="Down();">Down</button>
+<button style="width:70px; height:70px;" onclick="Left();">Left</button>
+<button style="width:70px; height:70px;" onclick="Right();">Right</button>
+<br/>
+<button style="width:70px; height:70px;" onclick="Down();">Down</button>
 </center>
 
 <script>
@@ -38,7 +37,7 @@ var score = false;
 var currentScore = 0;
 CreateSnake();
 CreateFood();
-document.getElementById("scoreBoard").innerHTML = currentScore;
+//document.getElementById("scoreBoard").innerHTML = currentScore;
 setInterval(function(){Move()}, 150);
 
 
@@ -97,7 +96,7 @@ function Score(){
 	if(food.x==snakeArray[0].x && food.y==snakeArray[0].y){
 	score =true;
 	currentScore =currentScore+10;
-	document.getElementById("scoreBoard").innerHTML = currentScore;
+	//document.getElementById("scoreBoard").innerHTML = currentScore;
 	}
 }
 
