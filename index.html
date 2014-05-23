@@ -13,12 +13,12 @@
 
 
 <br/>
-<button style="width:70px; height:70px;" onclick="Up();">Up</button>
+<button style="width:65px; height:65px;" onclick="Up();">Up</button>
 <br/>
-<button style="width:70px; height:70px;" onclick="Left();">Left</button>
-<button style="width:70px; height:70px;" onclick="Right();">Right</button>
+<button style="width:65px; height:65px;" onclick="Left();">Left</button>
+<button style="width:65px; height:65px;" onclick="Right();">Right</button>
 <br/>
-<button style="width:70px; height:70px;" onclick="Down();">Down</button>
+<button style="width:65px; height:65px;" onclick="Down();">Down</button>
 </center>
 
 <script>
@@ -37,7 +37,7 @@ var score = false;
 var currentScore = 0;
 CreateSnake();
 CreateFood();
-//document.getElementById("scoreBoard").innerHTML = currentScore;
+
 setInterval(function(){Move()}, 150);
 
 
@@ -46,9 +46,7 @@ function Move(){
 
 var snakeObject = new Object();
 	Score();
-	Lose();
-	
-	
+
 	if(direction=="Right"){
 		snakeObject.x = snakeArray[0].x+l;
 		snakeObject.y = snakeArray[0].y;
@@ -80,25 +78,27 @@ var snakeObject = new Object();
 	context.fillRect(snakeArray[0].x,snakeArray[0].y,l,l);
      
 }
-function Lose(){
-	if(snakeArray[0].x >= canvasWidth || snakeArray[0].x <= 0 || snakeArray[0].y >= canvasHeight  || snakeArray[0].y <=0 ){
+
+
+function Score(){
+	if(food.x==snakeArray[0].x && food.y==snakeArray[0].y){
+	score =true;
+	currentScore =currentScore+10;
 	
+	}
+	
+	//Lose
+	if(snakeArray[0].x >= canvasWidth || snakeArray[0].x <= 0 || snakeArray[0].y >= canvasHeight  || snakeArray[0].y <=0 ){
+	alert(currentScore);
 	 window.location.reload();
 	}
 	for(var i=1;i<snakeArray.length;i++)
 	{
 		if(snakeArray[0].x ==snakeArray[i].x && snakeArray[0].y ==snakeArray[i].y)
 		{
+		alert(currentScore);
 		window.location.reload();
 		}
-	}
-}
-
-function Score(){
-	if(food.x==snakeArray[0].x && food.y==snakeArray[0].y){
-	score =true;
-	currentScore =currentScore+10;
-	//document.getElementById("scoreBoard").innerHTML = currentScore;
 	}
 }
 
@@ -141,8 +141,6 @@ function CreateSnake(){
 	context.fillRect(snakeArray[i].x,snakeArray[i].y,l,l);
 	}
 }
-
-
 
 function Up(){
 	if(direction!="Down"){
