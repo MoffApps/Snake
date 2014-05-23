@@ -89,14 +89,18 @@ function Score(){
 	
 	//Lose
 	if(snakeArray[0].x >= canvasWidth || snakeArray[0].x <= 0 || snakeArray[0].y >= canvasHeight  || snakeArray[0].y <=0 ){
-	alert(currentScore);
+	  if(currentScore>0){
+		alert(currentScore);
+	  }
 	 window.location.reload();
 	}
 	for(var i=1;i<snakeArray.length;i++)
 	{
 		if(snakeArray[0].x ==snakeArray[i].x && snakeArray[0].y ==snakeArray[i].y)
 		{
-		alert(currentScore);
+		if(currentScore>0){
+			alert(currentScore);
+		}
 		window.location.reload();
 		}
 	}
